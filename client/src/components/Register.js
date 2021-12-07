@@ -1,4 +1,5 @@
 import { useState } from "react";
+import "../styles/Register.scss";
 
 const Register = () => {
     const [name, setName] = useState("");
@@ -6,27 +7,30 @@ const Register = () => {
     const [email, setEmail] = useState("");
 
     const register = () => {
-        console.log(2)
-    }
+        console.log(2);
+    };
 
     return (
-        <div className="inputWindow">
+        <div className="register">
             <h1>Присоединяемся к безопасному общению</h1>
-            <input
-                placeholder="Введите имя"
-                value={name}
-                onChange={(e) => setName(e.target.value)}
-            />
-            <input
-                placeholder="Введите email"
-                value={email}
-                onChange={(e) => setEmail(e.target.value)}
-            />
-            <input
-                placeholder="Введите пароль"
-                value={password}
-                onChange={(e) => setPassword(e.target.value)}
-            />
+
+            <div className="register__inputs">
+                <input
+                    placeholder="Введите имя"
+                    value={name}
+                    onChange={(e) => setName(e.target.value)}
+                />
+                <input
+                    placeholder="Введите email"
+                    value={email}
+                    onChange={(e) => setEmail(e.target.value)}
+                />
+                <input
+                    placeholder="Введите пароль"
+                    value={password}
+                    onChange={(e) => setPassword(e.target.value)}
+                />
+            </div>
 
             <button onClick={register}>Регитсрация</button>
         </div>

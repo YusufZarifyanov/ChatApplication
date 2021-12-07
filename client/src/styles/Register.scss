@@ -1,0 +1,40 @@
+.register {
+    display: flex;
+    width: 100%;
+    height: 100vh;
+    justify-content: space-around;
+    flex-direction: column;
+
+    .register__inputs {
+        display: flex;
+        flex-direction: column;
+    }
+
+    input {
+        height: 60px;
+        width: 50vh;
+        background-color: #404450;
+        border: none;
+        padding-left: 1rem;
+        border-radius: 5px;
+        margin-top: 20px;
+        &:focus {
+            outline: none;
+        }
+    }
+
+    button {
+        font-size: 1rem;
+        // margin: 0.5rem;
+        padding: 1rem;
+        width: 150px;
+        border: none;
+        background-color: #41ff8a;
+        border-radius: 15px;
+        margin-bottom: 80px;
+        color: black;
+        &:hover {
+            cursor: pointer;
+        }
+    }
+}
