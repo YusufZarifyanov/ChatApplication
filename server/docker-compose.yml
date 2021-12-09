@@ -1,0 +1,41 @@
+version: '3.3'
+
+services:
+  chat:
+    container_name: chat
+    restart: always
+    build:
+      context: ./
+    volumes:
+      - ./src:/usr/src/app/src
+    depends_on:
+      - db
+    environment:
+      - PORT=4000
+      - DATABASE_CONNECTION=postgres
+      - DATABASE_HOST=postgres
+      - DATABASE_PORT=5432
+      - DATABASE_USERNAME=yusuf
+      - DATABASE_PASSWORD=secret
+      - DATABASE_DATABASE=chat
+      - JWT_SECRET=secret
+      - JWT_EXPIRATION_TIME=130s
+    ports:
+      - 4000:4000
+    command: >
+      bash -c "npm run start:dev"
+
+
+  db:
+    container_name: postgres
+    image: postgres
+    environment:
+      - POSTGRES_DB=chat
+      - POSTGRES_USER=yusuf
+      - POSTGRES_PASSWORD=secret
+    restart: unless-stopped
+    ports:
+      - '5432:5432'
+    volumes:
+      - ./etc/db/initdb/init.sql:/docker-entrypoint-initdb.d/init.sql
+
