@@ -1,39 +1,33 @@
 import React from "react";
 import { useContext } from "react";
-import { NavLink, useNavigate } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
+import "../styles/Navbar.scss";
 
 const Navbar = () => {
-    const navigate = useNavigate()
+    const navigate = useNavigate();
     const auth = useContext(AuthContext);
 
-    const logoutHadler = event => {
+    const logoutHadler = (event) => {
         event.preventDefault();
         auth.logout();
-        navigate('/login')
+        navigate("/login");
     };
 
     return (
-        <nav>
-            <div class="nav-wrapper">
-                <a href="/" class="brand-logo">
-                    Enigma
+        <ul>
+            <li>
+                <a href="/profile">Чаты</a>
+            </li>
+            <li>
+                <a href="/profile">Комнаты</a>
+            </li>
+            <li style={{float: "right"}}>
+                <a href="/" onClick={logoutHadler}>
+                    Выйти
                 </a>
-                <ul id="nav-mobile" class="right hide-on-med-and-down">
-                    <li>
-                        <NavLink to="/profile">Профиль</NavLink>
-                    </li>
-                    <li>
-                        <NavLink to="/profile">Комнаты</NavLink>
-                    </li>
-                    <li>
-                        <a href="/" onClick={logoutHadler}>
-                            Выйти
-                        </a>
-                    </li>
-                </ul>
-            </div>
-        </nav>
+            </li>
+        </ul>
     );
 };
 
