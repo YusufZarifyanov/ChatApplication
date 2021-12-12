@@ -1,13 +1,40 @@
-import { useState } from "react";
+import { useContext, useEffect, useState } from "react";
 import "../styles/Register.scss";
+import { useHttp } from "../hooks/http.hook";
+import { useNavigate } from "react-router-dom";
+import { AuthContext } from "../context/AuthContext";
 
 const Register = () => {
     const [name, setName] = useState("");
     const [password, setPassword] = useState("");
     const [email, setEmail] = useState("");
 
-    const register = () => {
-        console.log(2);
+    const auth = useContext(AuthContext)
+
+
+    const { loading, error, request, clearError } = useHttp(auth.setModal);
+
+    const navigate = useNavigate();
+
+    useEffect(() => {
+        console.log(error);
+    }, [error]);
+
+    const registerHandler = async () => {
+        try {
+            const data = await request("/auth/register", "POST", {
+                name,
+                password,
+                email,
+            });
+            if (data.status) {
+                navigate("/login");
+            } else {
+                console.log("dalse1");
+            }
+        } catch (err) {
+            console.log("dalse2");
+        }
     };
 
     return (
@@ -26,13 +53,14 @@ const Register = () => {
                     onChange={(e) => setEmail(e.target.value)}
                 />
                 <input
+                    type="password"
                     placeholder="Введите пароль"
                     value={password}
                     onChange={(e) => setPassword(e.target.value)}
                 />
             </div>
 
-            <button onClick={register}>Регитсрация</button>
+            <button onClick={registerHandler}>Регистрация</button>
         </div>
     );
 };

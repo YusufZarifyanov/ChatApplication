@@ -21,7 +21,10 @@ export class AuthService {
                 ...registrationData,
                 password: hashedPassword
             });
-            return createdUser;
+            return {
+                ...createdUser,
+                status: true
+            };
         } catch (e) {
             throw new HttpException('Пользователь с таким email уже существует', HttpStatus.BAD_REQUEST);
         }
@@ -45,7 +48,8 @@ export class AuthService {
     async generateToken(user: UserDto) {
         const payload: TokenPayloadInterface = { userId: user.id, email: user.email };
         return {
-            token: this.jwtService.sign(payload)
+            token: this.jwtService.sign(payload),
+            userId: payload.userId
         }
     }
 }

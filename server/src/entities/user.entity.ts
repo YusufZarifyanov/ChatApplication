@@ -12,7 +12,7 @@ export class UserEntity {
 	name: string;
 
 	@Index()
-	@Column()
+	@Column({unique: true})
 	email: string;
 
 	@Index()

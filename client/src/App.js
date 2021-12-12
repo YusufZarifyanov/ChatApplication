@@ -1,22 +1,45 @@
-import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
-import React from "react";
-import io from "socket.io-client";
-import Homepage from "./pages/HomePage";
-import "./App.scss"
-import Register from "./components/Register";
-
-const socket = io.connect("/");
+import { BrowserRouter as Router } from "react-router-dom";
+import React, { useState } from "react";
+import Modal from "./components/Modal";
+import { useAuth } from "./hooks/auth.hook";
+import { AuthContext } from "./context/AuthContext";
+import { useRoutes } from "./routes";
+import "./App.scss";
+import Navbar from "./components/Navbar";
 
 const App = () => {
+    const { token, login, logout, userId } = useAuth();
+    const isAuth = !!token;
+    const [modal, setModal] = useState({
+        active: false,
+        content: "",
+    });
+
+    const routes = useRoutes(isAuth);
+
     return (
-        <Router>
-            <div className="App">
-                <Routes>
-                    <Route path="/login" exact element={<Homepage />} /> 
-                    <Route path="/register" exact element={<Register />} />  
-                </Routes>
-            </div>
-        </Router>
+        <AuthContext.Provider
+            value={{
+                token,
+                login,
+                logout,
+                userId,
+                isAuth,
+                setModal
+            }}
+        >
+            <Router>
+                {isAuth && <Navbar />}
+                <div className="App">
+                    {routes}
+                    <Modal
+                        active={modal.active}
+                        setActive={setModal}
+                        content={modal.content}
+                    />
+                </div>
+            </Router>
+        </AuthContext.Provider>
     );
 };
 

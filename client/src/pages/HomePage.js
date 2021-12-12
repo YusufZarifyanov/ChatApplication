@@ -4,7 +4,7 @@ import "../styles/HomePage.scss";
 
 const Homepage = () => {
     return (
-        <div className="container">
+        <div className="homepage">
             <div className="left"></div>
 
             <div className="right">
