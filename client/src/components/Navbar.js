@@ -17,7 +17,7 @@ const Navbar = () => {
     return (
         <ul>
             <li>
-                <a href="/profile">Чаты</a>
+                <a href="/chat">Чаты</a>
             </li>
             <li>
                 <a href="/profile">Комнаты</a>
