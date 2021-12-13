@@ -12,7 +12,7 @@ const Register = () => {
     const auth = useContext(AuthContext)
 
 
-    const { loading, error, request, clearError } = useHttp(auth.setModal);
+    const { error, request } = useHttp(auth.setModal);
 
     const navigate = useNavigate();
 

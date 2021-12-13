@@ -1,5 +1,4 @@
 import { useCallback, useState } from "react";
-import Modal from "../components/AuthModal";
 
 export const useHttp = (setModal) => {
     const [loading, setLoading] = useState(false);

@@ -6,7 +6,7 @@ const databaseConfig : any = {
     password: process.env.DATABASE_PASSWORD,
     database: process.env.DATABASE_DATABASE,
     synchronize: true,
-    logging: true,
+    logging: false,
     entities: [__dirname + '/../entities/*.entity{.ts,.js}'],
 };
 

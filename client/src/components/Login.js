@@ -10,7 +10,7 @@ const Login = () => {
 
     const auth = useContext(AuthContext);
 
-    const { loading, error, request, clearError } = useHttp(auth.setModal);
+    const { request } = useHttp(auth.setModal);
 
     const navigate = useNavigate();
 
