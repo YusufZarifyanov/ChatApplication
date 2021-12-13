@@ -33,12 +33,14 @@ export class UserService {
         return user
     }
 
-    async addFriendToUser(userId: number, friendId: number) {
-        if (userId === friendId) {
+    async addFriendToUser(userId: number, friendEmail: string) {
+        const friendUser = await this.findOneByEmail(friendEmail);
+
+        if (userId === friendUser.id) {
             throw new HttpException("Некорректные данные", HttpStatus.NOT_FOUND);
         }
-        await this.findOneById(userId);
-        const friend = await this.friendRepository.addFriendToUser(userId, friendId);
+
+        const friend = await this.friendRepository.addFriendToUser(userId, friendUser.id);
 
         const { name, email } = await this.findOneById(friend.friendId);
 
@@ -47,7 +49,7 @@ export class UserService {
 
     async getAllUserFriends(userId: number) {
         const friends = await this.friendRepository.find({ userId });
-
+        console.log(friends)
         return await Promise.all(
             friends.map(async friend => {
                 const { name, email } = await this.findOneById(friend.friendId);

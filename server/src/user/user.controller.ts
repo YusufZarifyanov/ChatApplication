@@ -6,8 +6,8 @@ export class UserController {
     constructor(private readonly userService: UserService) { };
 
     @Get('/friend')
-    addFriendToUser(@Query() { userId, friendId }) {
-        return this.userService.addFriendToUser(userId, friendId);
+    addFriendToUser(@Query() { userId, friendEmail }) {
+        return this.userService.addFriendToUser(userId, friendEmail);
     }
 
     @Get('/all-friends')

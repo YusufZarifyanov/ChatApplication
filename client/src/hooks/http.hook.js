@@ -1,5 +1,5 @@
 import { useCallback, useState } from "react";
-import Modal from "../components/Modal";
+import Modal from "../components/AuthModal";
 
 export const useHttp = (setModal) => {
     const [loading, setLoading] = useState(false);
@@ -28,7 +28,6 @@ export const useHttp = (setModal) => {
                         content: data.message
                     })
                     setError(data.message);                    
-                    throw new Error(data.message || "Ошибка");
                 }
                 setLoading(false);
 

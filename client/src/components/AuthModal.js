@@ -1,8 +1,7 @@
 import React from 'react'
-import "../styles/Modal.scss"
+import "../styles/AuthModal.scss"
 
-const Modal = ({active, setActive, content}) => {
-    console.log(content)
+const AuthModal = ({active, setActive, content}) => {
     return (
         <div className={active ? "modal active" : "modal"} onClick={() => setActive(false)}>
             <div className="modal__content" onClick={e => e.stopPropagation()}>
@@ -13,4 +12,4 @@ const Modal = ({active, setActive, content}) => {
     )
 }
 
-export default Modal
+export default AuthModal

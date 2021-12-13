@@ -1,11 +1,11 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import React, { useState } from "react";
-import Modal from "./components/Modal";
 import { useAuth } from "./hooks/auth.hook";
 import { AuthContext } from "./context/AuthContext";
 import { useRoutes } from "./routes";
 import "./App.scss";
 import Navbar from "./components/Navbar";
+import AuthModal from "./components/AuthModal";
 
 const App = () => {
     const { token, login, logout, userId } = useAuth();
@@ -32,7 +32,7 @@ const App = () => {
                 {isAuth && <Navbar />}
                 <div className="App">
                     {routes}
-                    <Modal
+                    <AuthModal
                         active={modal.active}
                         setActive={setModal}
                         content={modal.content}
