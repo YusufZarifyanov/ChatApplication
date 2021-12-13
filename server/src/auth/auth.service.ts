@@ -31,7 +31,7 @@ export class AuthService {
     }
 
     async login(email: string, password: string) {
-        const user = await this.userService.getUserByEmail(email);
+        const user = await this.userService.findOneByEmail(email);
 
         await this.verifyPasswords(password, user.password);
 
