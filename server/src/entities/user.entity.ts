@@ -1,4 +1,6 @@
-import { Column, Entity, Index, PrimaryGeneratedColumn } from "typeorm";
+import { Column, Entity, Index, OneToMany, PrimaryGeneratedColumn } from "typeorm";
+import { FriendEntity } from "./friends.entity";
+import { MessageEntity } from "./message.entity";
 
 @Entity({
     name: "User"
@@ -18,4 +20,13 @@ export class UserEntity {
 	@Index()
 	@Column()
 	password: string;
+
+	@OneToMany(type => FriendEntity, friend => friend.userId) 
+	userFriends: FriendEntity[];  
+
+	@OneToMany(type => MessageEntity, message => message.receivedId)
+	userReceivedMessages: MessageEntity[]
+
+	@OneToMany(type => MessageEntity, message => message.senderId)
+	userSendMessages: MessageEntity[]
 }
