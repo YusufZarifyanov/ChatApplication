@@ -1,14 +1,14 @@
-import { Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
+import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
 import { UserEntity } from "./user.entity";
 
 @Entity({
-    name: "Message"
+	name: "Message"
 })
 export class MessageEntity {
-    @PrimaryGeneratedColumn()
+	@PrimaryGeneratedColumn()
 	id: number;
 
-    @Index()
+	@Index()
 	@Column()
 	text: string;
 
@@ -20,6 +20,12 @@ export class MessageEntity {
 	@Column()
 	receivedId: number;
 
-    @ManyToOne(type => UserEntity, user => user.id) 
-    user: UserEntity
+	@CreateDateColumn({ name: 'created_at' })
+	created_at: Date;
+
+	@ManyToOne(() => UserEntity, user => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+	sender: UserEntity;
+
+	@ManyToOne(() => UserEntity, user => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+	received: UserEntity;
 }

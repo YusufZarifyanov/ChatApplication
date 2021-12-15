@@ -22,7 +22,10 @@ export class UserEntity {
 	password: string;
 
 	@OneToMany(type => FriendEntity, friend => friend.userId) 
-	userFriends: FriendEntity[];  
+	user: FriendEntity[];  
+
+	@OneToMany(type => FriendEntity, friend => friend.friendId) 
+	friend: FriendEntity[];  
 
 	@OneToMany(type => MessageEntity, message => message.receivedId)
 	userReceivedMessages: MessageEntity[]

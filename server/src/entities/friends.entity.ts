@@ -16,6 +16,9 @@ export class FriendEntity {
     @Column()
     friendId: number;
 
-    @ManyToOne(type => UserEntity, user => user.id)
+    @ManyToOne(type => UserEntity, user => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' },)
     user: UserEntity;
+
+    @ManyToOne(type => UserEntity, user => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' },)
+    friend: UserEntity;
 }

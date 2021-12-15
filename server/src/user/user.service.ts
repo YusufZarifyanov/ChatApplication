@@ -48,12 +48,11 @@ export class UserService {
 
     async getAllUserFriends(userId: number) {
         const friends = await this.friendRepository.find({ userId });
-        console.log(friends)
         return await Promise.all(
             friends.map(async friend => {
-                const { name, email } = await this.findOneById(friend.friendId);
+                const { name, email, id } = await this.findOneById(friend.friendId);
                 return {
-                    name, email
+                    id, name, email
                 }
             })
         )

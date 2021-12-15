@@ -8,23 +8,24 @@ import { MessageService } from "src/message/message.service";
 @WebSocketGateway()
 export class ChatGatewayService implements OnGatewayInit, OnGatewayConnection, OnGatewayDisconnect {
 
-  constructor(private readonly messageService: MessageService) {}
+  constructor(private readonly messageService: MessageService) { }
 
-  @WebSocketServer() 
+  @WebSocketServer()
   server: Server;
 
   private logger: Logger = new Logger('AppGateway');
 
   @SubscribeMessage('getAllMessages')
-  handleMessage1(@MessageBody() {userId, senderId}): void {
-    const messages = this.messageService.getAllUserMessages(userId, senderId);
+  async handleMessage1(@MessageBody() { userId, senderId }): Promise<void> {
+    const messages = await this.messageService.getAllUserMessages(userId, senderId);
     this.server.emit('allMessages', messages);
   }
-  
+
   @SubscribeMessage('sendMessage')
-  handleMessage(@MessageBody() messageDto: MessageDto): void {
-    const message = this.messageService.sendMessage(messageDto)
-    this.server.emit('sendedMessage', message);
+  async handleMessage(@MessageBody() messageDto: MessageDto): Promise<void> {
+    const message = await this.messageService.sendMessage(messageDto);
+    const messages = await this.messageService.getAllUserMessages(messageDto.receivedId, messageDto.senderId);
+    this.server.emit('allMessages', messages);
   }
 
   afterInit(server: Server) {

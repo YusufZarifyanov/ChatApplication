@@ -4,8 +4,14 @@ import { EntityRepository, Repository } from "typeorm";
 
 @EntityRepository(MessageEntity)
 export class MessageRepository extends Repository<MessageEntity> {
-   async getAllUserMessages(userId: number, senderId: number) {
-        return await this.find({where: {receivedId: userId, senderId}});
+    getAllUserMessages(userId: number, senderId: number) {
+        return this.createQueryBuilder('message')
+            .select('message.senderId', 'senderId')
+            .addSelect('message.text', 'text')
+            .addSelect('message.receivedId', 'receivedId')
+            .where(`("senderId" =:userId and "receivedId" = :senderId) or ("senderId" =:senderId and "receivedId" = :userId)`, { userId, senderId })
+            .orderBy("created_at")
+            .getRawMany()
     }
 }
 

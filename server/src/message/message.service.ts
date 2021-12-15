@@ -15,6 +15,7 @@ export class MessageService {
     }
 
     async getAllUserMessages(userId: number, senderId: number) {
+        console.log(await this.messageRepository.getAllUserMessages(userId, senderId))
         return await this.messageRepository.getAllUserMessages(userId, senderId);
     }
 }
