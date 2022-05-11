@@ -8,39 +8,47 @@ import Navbar from "./components/Navbar";
 import AuthModal from "./components/AuthModal";
 
 const App = () => {
-    const { token, login, logout, userId } = useAuth();
-    const isAuth = !!token;
-    const [modal, setModal] = useState({
-        active: false,
-        content: "",
-    });
+    // const { token, login, logout, userId } = useAuth();
+    // const isAuth = !!token;
+    // const [modal, setModal] = useState({
+    //     active: false,
+    //     content: "",
+    // });
 
-    const routes = useRoutes(isAuth);
+    const routes = useRoutes();
 
     return (
-        <AuthContext.Provider
-            value={{
-                token,
-                login,
-                logout,
-                userId,
-                isAuth,
-                setModal
-            }}
-        >
-            <Router>
-                {isAuth && <Navbar />}
-                <div className="App">
-                    {routes}
-                    <AuthModal
-                        active={modal.active}
-                        setActive={setModal}
-                        content={modal.content}
-                    />
-                </div>
-            </Router>
-        </AuthContext.Provider>
-    );
+       <Router>
+           <div className="App">
+                {routes}
+           </div>
+       </Router>
+    )
+
+    // return (
+    //     <AuthContext.Provider
+    //         value={{
+    //             token,
+    //             login,
+    //             logout,
+    //             userId,
+    //             isAuth,
+    //             setModal
+    //         }}
+    //     >
+    //         <Router>
+    //             {isAuth && <Navbar />}
+    //             <div className="App">
+    //                 {routes}
+    //                 <AuthModal
+    //                     active={modal.active}
+    //                     setActive={setModal}
+    //                     content={modal.content}
+    //                 />
+    //             </div>
+    //         </Router>
+    //     </AuthContext.Provider>
+    // );
 };
 
 export default App;

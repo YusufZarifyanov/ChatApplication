@@ -1,4 +1,10 @@
 @import url("https://fonts.googleapis.com/css2?family=Muli:ital,wght@0,200;0,300;0,400;0,500;0,600;0,700;0,800;0,900;1,200;1,300;1,400;1,500;1,600;1,700;1,800;1,900&display=swap");
+
+$backgroundColor: #7f347f;
+$darkViolet: rgb(87, 8, 133);
+$greenColor: #41ff8a;
+$greyColor: #2d343e;
+
 * {
   margin: 0 auto;
   padding: 0;
@@ -7,7 +13,44 @@
   font-family: "Muli", sans-serif;
 }
 
-$backgroundColor: #0f2912;
-$redColor: #ff1e56;
-$greenColor: #41ff8a;
-$greyColor: #2d343e;
+.title {
+  font-size: 25px;
+  font-weight: 700;
+}
+
+
+.description {
+  font-size: 18px;
+  font-weight: 200;
+}
+
+.input {
+  width: 200px;
+  height: 30px;
+  padding-left: 5px;
+  background-color: rgb(245, 231, 242);
+  border: none;
+  border-radius: 5px;
+  color: black;
+  text-align: center;
+}
+
+.button {
+  width: 130px;
+  height: 30px;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  text-decoration: none;
+  text-align: center;
+  background-color: $darkViolet;
+  border-radius: 20px;
+}
+
+
+// @media only screen 
+// and (min-device-width : 320px) 
+// and (max-device-width : 568px) {
+   
+// }
