@@ -1,32 +1,28 @@
-import React from "react"
-import { Routes, Route, Navigate } from "react-router-dom"
-import RegisterPage from "./pages/RegisterPage"
+import React from "react";
+import { Routes, Route, Navigate } from "react-router-dom";
+import ChatPage from "./pages/ChatPage";
+import LoginPage from "./pages/LoginPage";
+import PersInfoPage from "./pages/PersInfoPage";
+import PinCodePage from "./pages/PinCodePage";
+import RegisterPage from "./pages/RegisterPage";
 
-export const useRoutes = (isAuthenticated=false) => {
-    return (
-        <Routes>
-            <Route path="/register" exact element={<RegisterPage />} />
-            <Route path="*" element={<Navigate to="/register" />} />
-        </Routes>
-    )
-    // if (isAuthenticated) {
-    //     return (
-    //         <Routes>
-    //             <Route path="/chat" exact element={<Chatpage />} />
-    //             <Route path="*" element={<Navigate to="/chat" />} />
-    //         </Routes>
-    //     );
-    // } else {
-    //     return (
-    //         <Routes>
-    //             <Route path="/login" exact element={<Homepage />} />
-    //             <Route
-    //                 path="/register"
-    //                 exact
-    //                 element={<Register />}
-    //             />
-    //             <Route path="*" element={<Navigate to="/login" />} />
-    //         </Routes>
-    //     );
-    // }
+export const useRoutes = (isAuthenticated) => {
+    if (isAuthenticated) {
+        return (
+            <Routes>
+                <Route path="/chat" exact element={<ChatPage />} />
+                <Route path="*" element={<Navigate to="/chat" />} />
+            </Routes>
+        );
+    } else {
+        return (
+            <Routes>
+                <Route path="/register" exact element={<RegisterPage />} />
+                <Route path="/login" exact element={<LoginPage />} />
+                <Route path="/pin-code" exact element={<PinCodePage />} />
+                <Route path="/pers-info" exact element={<PersInfoPage />} />
+                <Route path="*" element={<Navigate to="/register" />} />
+            </Routes>
+        );
+    }
 };

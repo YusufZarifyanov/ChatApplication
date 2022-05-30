@@ -1,4 +1,8 @@
-const databaseConfig : any = {
+import * as dotenv from 'dotenv'
+
+dotenv.config()
+
+const databaseConfig: any = {
     type: process.env.DATABASE_CONNECTION,
     host: process.env.DATABASE_HOST,
     port: Number(process.env.DATABASE_PORT),
@@ -8,6 +12,11 @@ const databaseConfig : any = {
     synchronize: true,
     logging: false,
     entities: [__dirname + '/../entities/*.entity{.ts,.js}'],
-};
+    migrationsTableName: 'migration',
+    migrations: ['dist/database/migrations/*.js'],
+    cli: {
+        migrationsDir: 'src/database/migrations',
+    },
+}
 
-export default databaseConfig;
+module.exports = databaseConfig

@@ -1,13 +1,18 @@
-import { Body, Controller, Get, UseGuards } from '@nestjs/common';
+import { Controller, Get, Query } from '@nestjs/common';
 import { AppService } from './app.service';
-import { UserDto } from './dto/user.dto';
 
 @Controller()
 export class AppController {
   constructor(private readonly appService: AppService) {}
 
   @Get()
-   getHello(@Body() dto: UserDto) {
-    return this.appService.getHello(dto);
+  ping() {
+    return this.appService.ping();
+  }
+
+  @Get('/sms') 
+  sendSms(@Query('phone') phone: string) {
+    console.log(phone)
+    return this.appService.sendSms(phone)
   }
 }

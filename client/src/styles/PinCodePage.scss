@@ -1,0 +1,38 @@
+.pin_code {
+    height: 100vh;
+    width: 100%; 
+
+    .pin_code__title {
+        display: flex;
+        flex-direction: column;
+        height: 15%;
+        justify-content: center;
+    }
+
+    .pin_code__form {
+        height: 200px;
+        display: flex;
+        flex-direction: column;
+        justify-content: center;
+
+        .pin_code__form__code_input {
+            display: inline-block;
+            flex: 2;
+            label {
+              display: block;
+              margin-bottom: 5px;
+            }
+        }
+
+        .pin_code__form__submit {
+            display: flex;
+            flex-direction: column;
+            flex: 1;
+            justify-content: center;
+
+            p {
+                margin-top: 10px;
+            }
+        }
+    }
+}

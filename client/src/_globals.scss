@@ -2,6 +2,7 @@
 
 $backgroundColor: #7f347f;
 $darkViolet: rgb(87, 8, 133);
+$lightViolet: rgb(166, 80, 216);
 $greenColor: #41ff8a;
 $greyColor: #2d343e;
 
@@ -11,6 +12,11 @@ $greyColor: #2d343e;
   box-sizing: border-box;
   color: white;
   font-family: "Muli", sans-serif;
+}
+
+a {
+  font-weight: 700;
+  text-decoration-line: underline;
 }
 
 .title {
@@ -24,20 +30,10 @@ $greyColor: #2d343e;
   font-weight: 200;
 }
 
-.input {
-  width: 200px;
-  height: 30px;
-  padding-left: 5px;
-  background-color: rgb(245, 231, 242);
-  border: none;
-  border-radius: 5px;
-  color: black;
-  text-align: center;
-}
-
-.button {
-  width: 130px;
-  height: 30px;
+.input__submit {
+  position: relative;
+  width: 250px;
+  height: 50px;
   border: none;
   text-align: center;
   display: inline-block;
@@ -46,8 +42,83 @@ $greyColor: #2d343e;
   text-align: center;
   background-color: $darkViolet;
   border-radius: 20px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  overflow: hidden;
+  cursor: pointer;
 }
 
+
+input {
+  width: 300px;
+  height: 30px;
+  padding-left: 5px;
+  background-color: rgb(245, 231, 242);
+  border: none;
+  border-radius: 5px;
+  color: black;
+  display: block;
+}
+
+input:disabled { filter: blur(3px); }
+
+
+.button {
+  position: relative;
+  width: 250px;
+  height: 50px;
+  border: none;
+  text-align: center;
+  display: inline-block;
+  font-size: 16px;
+  text-decoration: none;
+  text-align: center;
+  background-color: $darkViolet;
+  border-radius: 20px;
+  -webkit-transition-duration: 0.4s; /* Safari */
+  transition-duration: 0.4s;
+  overflow: hidden;
+  cursor: pointer;
+}
+
+.button:after {
+  content: "";
+  background: #f1f1f1;
+  display: block;
+  position: absolute;
+  padding-top: 300%;
+  padding-left: 350%;
+  margin-left: -20px !important;
+  margin-top: -120%;
+  opacity: 0;
+  transition: all 0.8s
+}
+
+.button:active:after {
+  padding: 0;
+  margin: 0;
+  opacity: 1;
+  transition: 0s
+}
+
+.container__icon {
+  display: flex;
+  margin: 0 auto;
+  align-items: flex-start;
+  background-color: white;
+  height: 30%;
+  border-radius: 0 0 12em 12em;
+}
+
+.error_message {
+  display: flex;
+  justify-content: center;
+  height: 10px;
+  p {
+    font-size: 10;
+    color: red;
+  }
+}
 
 // @media only screen 
 // and (min-device-width : 320px) 
