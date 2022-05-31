@@ -4,7 +4,7 @@ import { useForm } from "react-hook-form";
 import "../styles/PersInfoPage.scss";
 import validator from "validator";
 import { useHttp } from "../hooks/http.hook";
-import { AuthContext } from "../context/AuthContext";
+import { GeneralContext } from "../context/GeneralContext";
 import { useContext } from "react";
 
 const PersInfoPage = () => {
@@ -22,7 +22,7 @@ const PersInfoPage = () => {
 
     const { request } = useHttp();
 
-    const { login } = useContext(AuthContext);
+    const { login } = useContext(GeneralContext);
 
     const password = useRef({});
     password.current = watch("password", "");

@@ -1,6 +1,6 @@
 import IconContainer from "../components/IconContainer";
 import { useForm } from "react-hook-form";
-import { AuthContext } from "../context/AuthContext";
+import { GeneralContext } from "../context/GeneralContext";
 import { useContext } from "react";
 import { useHttp } from "../hooks/http.hook";
 import validator from "validator";
@@ -8,7 +8,7 @@ import validator from "validator";
 import "../styles/LoginPage.scss";
 
 const LoginPage = () => {
-    const { login } = useContext(AuthContext);
+    const { login } = useContext(GeneralContext);
 
     const { request, serverError } = useHttp();
 

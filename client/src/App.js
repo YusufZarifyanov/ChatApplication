@@ -1,7 +1,7 @@
 import { BrowserRouter as Router } from "react-router-dom";
 import React from "react";
 import { useAuth } from "./hooks/auth.hook";
-import { AuthContext } from "./context/AuthContext";
+import { GeneralContext } from "./context/GeneralContext";
 import { useRoutes } from "./routes";
 import "./App.scss";
 
@@ -12,7 +12,7 @@ const App = () => {
     const routes = useRoutes(isAuth);
 
     return (
-        <AuthContext.Provider
+        <GeneralContext.Provider
             value={{
                 token,
                 login,
@@ -23,7 +23,7 @@ const App = () => {
             <Router>
                 <div className="App">{routes}</div>
             </Router>
-        </AuthContext.Provider>
+        </GeneralContext.Provider>
     );
 };
 
