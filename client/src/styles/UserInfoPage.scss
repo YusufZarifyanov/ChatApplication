@@ -1,0 +1,22 @@
+.userInfo {
+    .userInfo__image {
+        padding-top: 10px;
+        display: flex;
+        justify-content: center;
+        flex-direction: column;
+
+        img {
+            width: 150px;
+            height: 150px;
+        }
+
+        button {
+            margin-top: 10px;
+            width: 250px;
+            height: 50px;
+            background-color: rgb(187, 157, 183);
+            border-radius: 20px;
+            border: 1px solid white;
+        }
+    }
+}

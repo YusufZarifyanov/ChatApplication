@@ -28,7 +28,6 @@ export class CreateUserDto {
     isActive: boolean
 
     @ApiProperty()
-    @IsOptional()
     @IsEmail()
     email: string
 }

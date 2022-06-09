@@ -20,4 +20,8 @@ export class User extends BaseEntity {
     @Index()
     @Column({ unique: true })
     email: string
+
+    @Index()
+    @Column({nullable: true})
+    image: string
 }

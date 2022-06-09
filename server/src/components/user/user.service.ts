@@ -3,10 +3,11 @@ import { CreateUserDto } from 'src/dto/user/create-user.dto'
 import { UpdateUserDto } from 'src/dto/user/update-user.dto'
 import { User } from 'src/entities/user.entity'
 import { UserRepository } from 'src/repositories/user.repository'
+import { FileService } from '../file/file.service'
 
 @Injectable()
 export class UserService {
-    constructor(private readonly userRepository: UserRepository) {}
+    constructor(private readonly userRepository: UserRepository, private fileService: FileService) {}
 
     async findUsers(): Promise<User[]> {
         return this.userRepository.find()
@@ -48,5 +49,11 @@ export class UserService {
         await this.userRepository.delete(id)
 
         return user
+    }
+
+    async uploadImage(image, userId: number) {
+        const filename = await this.fileService.createFile(image)
+        await this.updateUser(userId, { image: filename })
+        return filename
     }
 }

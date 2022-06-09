@@ -9,8 +9,12 @@ export const useHttp = () => {
     const request = useCallback(
         async (url, method = "GET", body = null, headers = {}) => {
             setLoading(true);
-
             try {
+                const payload = JSON.parse(localStorage.getItem("userData"));
+
+                if (payload) {
+                    headers["Authorization"] = "Bearer " + payload.token;
+                }
                 if (body) {
                     body = JSON.stringify(body);
                     headers["Content-Type"] = "application/json";

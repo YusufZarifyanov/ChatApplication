@@ -8,8 +8,8 @@ export abstract class BaseEntity {
     isActive: boolean
 
     @CreateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-    createdAt: Date
+    created_at: Date
 
     @UpdateDateColumn({ type: 'timestamptz', default: () => 'CURRENT_TIMESTAMP' })
-    updatedAt: Date
+    updated_at: Date
 }

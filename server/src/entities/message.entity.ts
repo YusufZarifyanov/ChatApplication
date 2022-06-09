@@ -1,31 +1,29 @@
-// import { Column, CreateDateColumn, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from "typeorm";
-// import { UserEntity } from "./user.entity";
+import { Column, Entity, Index, ManyToOne, PrimaryGeneratedColumn } from 'typeorm'
+import { BaseEntity } from './base.entity'
+import { User } from './user.entity'
 
-// @Entity({
-// 	name: "Message"
-// })
-// export class MessageEntity {
-// 	@PrimaryGeneratedColumn()
-// 	id: number;
+@Entity({
+    name: 'message',
+})
+export class Message extends BaseEntity {
+    @PrimaryGeneratedColumn()
+    id: number
 
-// 	@Index()
-// 	@Column()
-// 	text: string;
+    @Index()
+    @Column()
+    text: string
 
-// 	@Index()
-// 	@Column()
-// 	senderId: number;
+    @Index()
+    @Column()
+    senderId: number
 
-// 	@Index()
-// 	@Column()
-// 	receivedId: number;
+    @Index()
+    @Column()
+    receivedId: number
 
-// 	@CreateDateColumn({ name: 'created_at' })
-// 	created_at: Date;
+    @ManyToOne(() => User, (user) => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+    sender: User
 
-// 	@ManyToOne(() => UserEntity, user => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
-// 	sender: UserEntity;
-
-// 	@ManyToOne(() => UserEntity, user => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
-// 	received: UserEntity;
-// }
+    @ManyToOne(() => User, (user) => user.id, { onDelete: 'CASCADE', onUpdate: 'CASCADE' })
+    received: User
+}
